@@ -4,7 +4,9 @@
   "main": "server.js",
   "scripts": {
       "dev": "nodemon server.js",
-      "start": "node server.js"
+      "start": "node server.js",
+      "test": "echo \"No testing configured\"",
+      "lint" : "echo \"No linting configured\""
   },
   "author": "alberto perez meneses",
   "license": "MIT",
