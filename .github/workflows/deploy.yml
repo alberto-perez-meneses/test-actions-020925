@@ -1,0 +1,30 @@
+name: Deploy CI
+on:
+  workflow_dispatch:
+
+jobs:
+  run_deploy:
+    name: deploy to server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            # Login en GitHub Container Registry
+            echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+            # Descargar última versión de la imagen
+            docker pull ghcr.io/${{ github.repository_owner }}/test-actions-020925-node-app:latest
+
+            # Detener y borrar contenedor previo si existe
+            docker stop myapp || true
+            docker rm myapp || true
+
+            # Iniciar nuevo contenedor
+            docker run -d --name myapp -p 3000:3000 ghcr.io/${{ github.repository_owner }}/test-actions-020925-node-app:latest
