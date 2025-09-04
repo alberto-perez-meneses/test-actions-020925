@@ -12,31 +12,31 @@ jobs:
       - name: Debug secrets
         run: |
           if [ -z "${{ secrets.SSH_HOST }}" ]; then
-            echo "❌ SSH_HOST está vacío"
+            echo "SSH_HOST está vacío"
             exit 1
           else
-            echo "✅ SSH_HOST está configurado"
+            echo "SSH_HOST está configurado"
           fi
 
           if [ -z "${{ secrets.SSH_USER }}" ]; then
             echo "❌ SSH_USER está vacío"
             exit 1
           else
-            echo "✅ SSH_USER está configurado"
+            echo "SSH_USER está configurado"
           fi
 
           if [ -z "${{ secrets.SSH_PRIVATE_KEY }}" ]; then
-            echo "❌ SSH_PRIVATE_KEY está vacío"
+            echo "SSH_PRIVATE_KEY está vacío"
             exit 1
           else
-            echo "✅ SSH_PRIVATE_KEY está configurado"
+            echo "SSH_PRIVATE_KEY está configurado"
           fi
 
           if [ -z "${{ secrets.SSH_PORT }}" ]; then
-            echo "❌ SSH_PORT está vacío"
+            echo "SSH_PORT está vacío"
             exit 1
           else
-            echo "✅ SSH_PORT está configurado"
+            echo "SSH_PORT está configurado"
           fi
 
       # Paso 2: Ejecutar comandos remotos por SSH
