@@ -1,0 +1,10 @@
+services:
+  page:
+    build:
+      context: ./web
+    ports:
+      - "80:80"
+    volumes:
+      - ./web/static:/usr/share/nginx/html
+    container_name: page_service
+    
