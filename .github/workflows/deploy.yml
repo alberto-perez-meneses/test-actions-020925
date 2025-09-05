@@ -19,7 +19,7 @@ jobs:
           fi
 
           if [ -z "${{ secrets.SSH_USER }}" ]; then
-            echo "❌ SSH_USER está vacío"
+            echo "SSH_USER está vacío"
             exit 1
           else
             echo "SSH_USER está configurado"
@@ -59,4 +59,4 @@ jobs:
             docker rm myapp || true
 
             # Iniciar nuevo contenedor
-            docker run -d --name myapp -p 3000:3000 ghcr.io/${{ github.repository_owner }}/test-actions-020925-node-app:latest
+            docker run -d --rm --name myapp -p 3000:3000 ghcr.io/${{ github.repository_owner }}/test-actions-020925-node-app:latest
